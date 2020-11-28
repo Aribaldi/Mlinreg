@@ -49,7 +49,6 @@ def zeros_matrix(rows, cols):
     Creates a matrix filled with zeros.
         :param rows: the number of rows the matrix should have
         :param cols: the number of columns the matrix should have
-
         :returns: list of lists that form the matrix.
     """
     M = []
@@ -64,7 +63,6 @@ def identity_matrix(n):
     """
     Creates and returns an identity matrix.
         :param n: the square size of the matrix
-
         :returns: a square identity matrix
     """
     I = zeros_matrix(n, n)
@@ -77,7 +75,6 @@ def copy_matrix(M):
     """
     Creates and returns a copy of a matrix.
         :param M: The matrix to be copied
-
         :return: The copy of the given matrix
     """
     rows = len(M)
@@ -102,7 +99,6 @@ def transpose(M):
     """
     Creates and returns a transpose of a matrix.
         :param M: The matrix to be transposed
-
         :return: the transpose of the given matrix
     """
     rows = len(M)
@@ -121,7 +117,6 @@ def matrix_multiply(A,B):
     Returns the product of the matrix A * B
         :param A: The first matrix - ORDER MATTERS!
         :param B: The second matrix
-
         :return: The product of the two matrices
     """
     rowsA = len(A)
@@ -150,7 +145,6 @@ def check_matrix_equality(A,B, tol=None):
         :param A: The first matrix
         :param B: The second matrix
         :param tol: The decimal place tolerance of the check
-
         :return: The boolean result of the equality check
     """
     if len(A) != len(B) or len(A[0]) != len(B[0]):
@@ -171,7 +165,6 @@ def invert_matrix(A, tol=None):
     """
     Returns the inverse of the passed in matrix.
         :param A: The matrix to be inversed
-
         :return: The inverse of the matrix A
     """
     check_squareness(A)
@@ -234,6 +227,59 @@ def l2_norm(v):
     for e in v:
         res += e * e
     return math.sqrt(res)
+
+def matrix_sum(A, B):
+    ans = zeros_matrix(len(A), len(A[0]))
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            ans[i][j] = A[i][j] + B[i][j]
+
+    return ans
+
+def matrix_by_scalar(A, scalar):
+    ans = zeros_matrix(len(A), len(A[0]))
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            ans[i][j] = A[i][j] * scalar
+
+    return ans
+
+def matrix_add_scalar(A, scalar):
+    ans = zeros_matrix(len(A), len(A[0]))
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            ans[i][j] = A[i][j] + scalar
+
+    return ans
+
+def add_one_for_bias(vector):
+    b = vector[:]
+    b[0:0] = [1.0]
+    return b
+
+def create_zeros_same_shape(A):
+    return zeros_matrix(len(A), len(A[0]))
+
+def elementwise_power(A, power):
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            A[i][j] = A[i][j] ** power
+
+    return A
+
+def elementwise_product(A, B):
+    ans = zeros_matrix(len(A), len(A[0]))
+
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            ans[i][j] = A[i][j] * B[i][j]
+
+    return ans
+
 
 if __name__ == "__main__":
     print(mult_vect_by_scalar([1, -8, 10], 2))
