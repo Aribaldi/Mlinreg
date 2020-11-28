@@ -58,3 +58,12 @@ class Optimizer(ABC):
                 print("W: ", self.w)
 
                 print("Curr epoch: {}, Num of example: {}, Curr loss: {}".format(i + 1, j + 1, curr_loss / self.params["batch_size"]))
+
+    def predict(self, x_data):
+        predict = []
+        for idx, data in enumerate(x_data):
+            data = add_one_for_bias(data)
+            result = matrix_multiply([data], self.w)
+            predict.append(result)
+
+        return predict

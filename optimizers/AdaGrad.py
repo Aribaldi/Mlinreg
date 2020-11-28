@@ -1,4 +1,4 @@
-from Optimizer import Optimizer
+from optimizers.Optimizer import Optimizer
 from matrix import *
 
 
