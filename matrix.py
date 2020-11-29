@@ -1,4 +1,5 @@
 import math
+import random
 
 #   Matrix is given in a form of list with list-elements, corresponding to
 #   matrix row, e.g. A = [[1, 2], [3, 4]] results in
@@ -280,6 +281,21 @@ def elementwise_product(A, B):
 
     return ans
 
+def get_num_of_norm_distr():
+    mean = 0
+    var = 1
+    sum = 0
+    for i in range(12):
+        sum += random.uniform(0, 1)
+    return mean + var * (sum - 6)
+
+def init_norm(rows, cols):
+    res = []
+    for r in range(rows):
+        res.append([])
+        for c in range(cols):
+            res[r].append(get_num_of_norm_distr())
+    return res
 
 if __name__ == "__main__":
     print(mult_vect_by_scalar([1, -8, 10], 2))
