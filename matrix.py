@@ -297,6 +297,14 @@ def init_norm(rows, cols):
             res[r].append(get_num_of_norm_distr())
     return res
 
+def init_uni(rows, cols):
+    res = []
+    for r in range(rows):
+        res.append([])
+        for c in range(cols):
+            res[r].append(random.uniform(0, 1))
+    return res
+
 if __name__ == "__main__":
     print(mult_vect_by_scalar([1, -8, 10], 2))
     print(scalar_mult([5, -2, 4], [1, -8, 10]))
