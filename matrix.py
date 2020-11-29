@@ -153,7 +153,7 @@ def check_matrix_equality(A,B, tol=None):
     for i in range(len(A)):
         for j in range(len(A[0])):
             if tol == None:
-                if A[i][j] != B[i][j]:
+                if abs(A[i][j] - B[i][j]) > 1e-10:
                     return False
             else:
                 if round(A[i][j],tol) != round(B[i][j],tol):
