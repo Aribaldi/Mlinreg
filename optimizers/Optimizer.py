@@ -9,7 +9,8 @@ class Optimizer(ABC):
         self.y_data = y_data
         self.params = params
         # self.w = zeros_matrix(len(self.x_data[0]) + 1, len(self.y_data[0]))
-        self.w = [[0.0], [0.888], [0.777]]
+        #self.w = [[0.0], [0.888], [0.777]]
+        self.w = init_norm(len(self.x_data[0]) + 1, 1)
         self.statistics = {}
         self.params = params
         self.steps = 0
