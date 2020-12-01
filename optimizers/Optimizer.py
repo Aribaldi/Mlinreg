@@ -28,12 +28,12 @@ class Optimizer(ABC):
                 curr_loss = 0.0
                 for num, example in enumerate(batch):
                     example = add_one_for_bias(example)
-                    print(example)
+                    #print(example)
                     result = matrix_multiply([example], self.w)
                     batch_ans.append(result)
 
-                    print(result)
-                    print(self.y_data[j * self.params["batch_size"] + num][0])
+                    #print(result)
+                    #print(self.y_data[j * self.params["batch_size"] + num][0])
                     loss_ex = result[0][0] - self.y_data[j * self.params["batch_size"] + num][0]
                     losses.append(loss_ex)
 
@@ -42,9 +42,9 @@ class Optimizer(ABC):
 
                 grad = self.__calc_grad(losses, batch)
                 self.steps += 1
-                print("GRAD: ", grad)
-                print("W BEFORE: ", self.w)
-                print(grad)
+                #print("GRAD: ", grad)
+                #print("W BEFORE: ", self.w)
+                #print(grad)
 
                 if "regularization" in self.params:
                     alpha = self.params["weight_decay"]
@@ -56,7 +56,7 @@ class Optimizer(ABC):
                         raise ValueError("No such type of regularization")
 
                 self.w = matrix_sum(self.w, matrix_by_scalar(grad, -self.params["learning_rate"]))
-                print("W: ", self.w)
+                #print("W: ", self.w)
 
                 print("Curr epoch: {}, Num of example: {}, Curr loss: {}".format(i + 1, j + 1, curr_loss / self.params["batch_size"]))
 

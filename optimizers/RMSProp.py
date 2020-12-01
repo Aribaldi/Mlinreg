@@ -25,7 +25,7 @@ class RMSProp(Optimizer):
             grad = matrix_sum(grad, tmp_grad)
 
         grad = matrix_by_scalar(grad, 1 / self.params["batch_size"])
-        print("GRAD inside: ", grad)
+        #print("GRAD inside: ", grad)
         self.statistics["ema_grad"][0][0] = self.statistics["ema_grad"][0][0] * self.params["gamma"] + \
                                             (1 - self.params["gamma"]) * (grad[0][0] ** 2)
 
@@ -33,7 +33,7 @@ class RMSProp(Optimizer):
             self.statistics["ema_grad"][z][0] += self.statistics["ema_grad"][z][0] * self.params["gamma"] + \
                                                  (1 - self.params["gamma"]) * (grad[z][0] ** 2)
 
-        print("STATISTIC: ", self.statistics["ema_grad"])
+        #print("STATISTIC: ", self.statistics["ema_grad"])
         coefficient = elementwise_power(matrix_add_scalar(self.statistics["ema_grad"], self.params["epsilon"]), -1/2)
         grad = elementwise_product(grad, coefficient)
 
