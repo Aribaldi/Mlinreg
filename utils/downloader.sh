@@ -1,8 +1,7 @@
 # adapted from https://github.com/edd-r/BT.sh
 # subject to the Apache License, Version 2.0.
 
-FOLDER="/data/"
-SAVEPATH=$(pwd -P)$FOLDER
+SAVEPATH="/data/"
 cd $SAVEPATH
 for YEAR in `seq -w $2 $4`; do
 echo "-----Downloading data for "$YEAR"-----"
@@ -39,4 +38,4 @@ done
 done
 echo "-----Total observations-----"
 wc -l *.csv
-cd $(pwd - P)
+cd "../"
