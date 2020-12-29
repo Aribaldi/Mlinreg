@@ -1,5 +1,6 @@
 from abc import abstractmethod, ABC, ABCMeta
 from matrix import *
+from matplotlib import pyplot as plt
 
 
 class Optimizer(ABC):
@@ -20,8 +21,11 @@ class Optimizer(ABC):
         pass
 
     def fit(self):
+        epoch_losses = []
         for i in range(self.params["epochs"]):
-            for j in range(len(self.x_data) // self.params["batch_size"]):
+            step_losses = []
+            steps_num = len(self.x_data) // self.params["batch_size"]
+            for j in range(steps_num):
                 batch = self.x_data[self.params["batch_size"] * j: self.params["batch_size"] * (j + 1)]
                 batch_ans = []
                 losses = []
@@ -57,8 +61,15 @@ class Optimizer(ABC):
 
                 self.w = matrix_sum(self.w, matrix_by_scalar(grad, -self.params["learning_rate"]))
                 #print("W: ", self.w)
+                step_losses.append(curr_loss / self.params["batch_size"])
+            epoch_losses.append(sum(step_losses) / steps_num)
+        _, ax = plt.subplots(1, 1, figsize = (10, 10))
+        ax.set_xlabel('epoch')
+        ax.set_ylabel('loss')
+        ax.plot(range(self.params["epochs"]), epoch_losses)
+        plt.show()
 
-                print("Curr epoch: {}, Num of example: {}, Curr loss: {}".format(i + 1, j + 1, curr_loss / self.params["batch_size"]))
+                #print("Curr epoch: {}, Num of example: {}, Curr loss: {}".format(i + 1, j + 1, curr_loss / self.params["batch_size"]))
 
     def predict(self, x_data):
         predict = []

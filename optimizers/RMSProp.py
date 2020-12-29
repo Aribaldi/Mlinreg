@@ -14,7 +14,7 @@ class RMSProp(Optimizer):
 
         for num, example in enumerate(batch):
             loss = losses[num]
-            print("LOSS: ", loss)
+            #print("LOSS: ", loss)
 
             tmp_grad = zeros_matrix(len(self.x_data[0]) + 1, len(self.y_data[0]))
             tmp_grad[0][0] = 2 * loss
