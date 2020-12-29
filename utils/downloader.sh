@@ -37,4 +37,3 @@ done
 done
 echo "-----Total observations-----"
 wc -l *.csv
-cd "../"
